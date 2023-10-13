@@ -8,14 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @AppStorage("createdProfile") var createdProfile: Bool = false
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack{
+            BackgroundView()
+            
+            if createdProfile{
+                //App
+            }else{
+                //Create Profile
+            }
         }
-        .padding()
     }
 }
 

@@ -11,6 +11,7 @@
 		C18A6A392AD9369300395434 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A6A382AD9369300395434 /* ContentView.swift */; };
 		C18A6A3B2AD9369400395434 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C18A6A3A2AD9369400395434 /* Assets.xcassets */; };
 		C18A6A3E2AD9369400395434 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C18A6A3D2AD9369400395434 /* Preview Assets.xcassets */; };
+		C18A6A452AD937D300395434 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18A6A442AD937D300395434 /* BackgroundView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		C18A6A382AD9369300395434 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C18A6A3A2AD9369400395434 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C18A6A3D2AD9369400395434 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C18A6A442AD937D300395434 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			children = (
 				C18A6A362AD9369300395434 /* MoneyManagerApp.swift */,
 				C18A6A382AD9369300395434 /* ContentView.swift */,
+				C18A6A442AD937D300395434 /* BackgroundView.swift */,
 				C18A6A3A2AD9369400395434 /* Assets.xcassets */,
 				C18A6A3C2AD9369400395434 /* Preview Content */,
 			);
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C18A6A452AD937D300395434 /* BackgroundView.swift in Sources */,
 				C18A6A392AD9369300395434 /* ContentView.swift in Sources */,
 				C18A6A372AD9369300395434 /* MoneyManagerApp.swift in Sources */,
 			);
