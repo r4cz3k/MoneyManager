@@ -9,10 +9,15 @@ import SwiftUI
 
 struct OnboardingView: View {
     
-    @State var onboardingState: Int = 2
+    @AppStorage("createdProfile") var createdProfile: Bool = false
     
+    @State var onboardingState: Int = 1
     @State var name: String = ""
     @State var budget: String = ""
+    @State var buttonText: String = ""
+    
+    @State var showAlert: Bool = false
+    @State var alertTitle: String = ""
     
     var body: some View {
         ZStack{
@@ -34,6 +39,9 @@ struct OnboardingView: View {
             }
             .padding()
         }
+        .alert(isPresented: $showAlert, content: {
+            return Alert(title: Text(alertTitle))
+        })
     }
 }
 
@@ -48,7 +56,7 @@ struct OnboardingView: View {
 
 extension OnboardingView{
     private var bottomButton: some View{
-        Text("Create Profile")
+        Text(getButtonText())
             .font(.headline)
             .foregroundStyle(Color(#colorLiteral(red: 0.1803921569, green: 0.768627451, blue: 0.7137254902, alpha: 1)))
             .frame(height: 55)
@@ -58,7 +66,7 @@ extension OnboardingView{
             .shadow(radius: 5)
             .animation(nil, value: UUID())
             .onTapGesture {
-                
+                nextOnboardingView()
             }
     }
     
@@ -109,6 +117,7 @@ extension OnboardingView{
                     .background(Color.white)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .shadow(radius: 2)
+                    .foregroundStyle(.black)
             }
             .padding(.horizontal, 10)
             .padding(.vertical, 20)
@@ -136,6 +145,7 @@ extension OnboardingView{
                     .background(Color.white)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .shadow(radius: 2)
+                    .foregroundStyle(.black)
             }
             .padding(.horizontal, 5)
             .padding(.vertical, 20)
@@ -145,5 +155,55 @@ extension OnboardingView{
             Spacer()
         }
         .padding(30)
+    }
+}
+
+extension OnboardingView{
+    private func nextOnboardingView(){
+        
+        switch onboardingState{
+        case 0:
+            onboardingState += 1
+        case 1:
+            buttonText = "Next"
+            guard name.count < 3 else{
+                showAlert(title: "Your name must be at least 3 characters long!")
+                return
+            }
+            onboardingState += 1
+        case 2:
+            guard Int(budget) ?? 0 < 1 else {
+                showAlert(title: "Your budget is too low!")
+                return
+            }
+        default:
+            break
+        }
+    }
+    
+    private func showAlert(title: String){
+        alertTitle = title
+        showAlert.toggle()
+    }
+    
+    private func getButtonText() -> String{
+        var returnText: String = ""
+        
+        switch onboardingState{
+        case 0:
+            returnText =  "Create Profile"
+        case 1:
+            returnText = "Next"
+        case 2:
+            returnText = "Finish"
+        default:
+            break
+        }
+        
+        return returnText
+    }
+    
+    private func signUp(){
+        
     }
 }
