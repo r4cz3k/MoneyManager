@@ -16,7 +16,7 @@ struct ContentView: View {
             BackgroundView()
             
             if createdProfile{
-                //App
+                Text("Created")
             }else{
                 OnboardingView()
             }

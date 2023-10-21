@@ -10,14 +10,23 @@ import SwiftUI
 struct OnboardingView: View {
     
     @AppStorage("createdProfile") var createdProfile: Bool = false
+    @AppStorage("name") var userName: String?
+    @AppStorage("budget") var userBudget: Int?
+
     
-    @State var onboardingState: Int = 1
+    @State var onboardingState: Int = 0
+    
     @State var name: String = ""
     @State var budget: String = ""
+    
     @State var buttonText: String = ""
     
     @State var showAlert: Bool = false
     @State var alertTitle: String = ""
+    
+    let transition: AnyTransition = .asymmetric(
+        insertion: .move(edge: .trailing),
+        removal: .move(edge: .leading))
     
     var body: some View {
         ZStack{
@@ -25,10 +34,13 @@ struct OnboardingView: View {
             switch onboardingState{
             case 0:
                 welcomeSection
+                    .transition(transition)
             case 1:
                 addNameSection
+                    .transition(transition)
             case 2:
                 addBudgetSection
+                    .transition(transition)
             default:
                 RoundedRectangle(cornerRadius: 10)
             }
@@ -166,14 +178,17 @@ extension OnboardingView{
             onboardingState += 1
         case 1:
             buttonText = "Next"
-            guard name.count < 3 else{
+            if name.count < 3{
                 showAlert(title: "Your name must be at least 3 characters long!")
                 return
             }
             onboardingState += 1
         case 2:
-            guard Int(budget) ?? 0 < 1 else {
+            if Int(budget) ?? 0 < 1 {
                 showAlert(title: "Your budget is too low!")
+                return
+            }else{
+                signUp()
                 return
             }
         default:
@@ -204,6 +219,11 @@ extension OnboardingView{
     }
     
     private func signUp(){
-        
+        print("signup")
+        userName = name
+        userBudget = Int(budget)
+        withAnimation(.spring()){
+            createdProfile = true
+        }
     }
 }
